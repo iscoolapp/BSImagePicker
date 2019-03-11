@@ -58,26 +58,28 @@ final class AlbumCell: UITableViewCell {
         albumTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(albumTitleLabel)
 
-        NSLayoutConstraint.activate([
-            imageContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            imageContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            imageContainerView.heightAnchor.constraint(equalToConstant: 84),
-            imageContainerView.widthAnchor.constraint(equalToConstant: 84),
-            imageContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            albumTitleLabel.leadingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: 8),
-            albumTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            albumTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            albumTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        ])
-
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                imageContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+                imageContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+                imageContainerView.heightAnchor.constraint(equalToConstant: 84),
+                imageContainerView.widthAnchor.constraint(equalToConstant: 84),
+                imageContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+                albumTitleLabel.leadingAnchor.constraint(equalTo: imageContainerView.trailingAnchor, constant: 8),
+                albumTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                albumTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+                albumTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            ])
+        }
         // Image views
         [thirdImageView, secondImageView, firstImageView].forEach {
             imageContainerView.addSubview($0)
-            NSLayoutConstraint.activate([
-                $0.heightAnchor.constraint(equalToConstant: 79),
-                $0.widthAnchor.constraint(equalToConstant: 79)
-            ])
-
+            if #available(iOS 9.0, *) {
+                NSLayoutConstraint.activate([
+                    $0.heightAnchor.constraint(equalToConstant: 79),
+                    $0.widthAnchor.constraint(equalToConstant: 79)
+                ])
+            }
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.layer.shadowColor = UIColor.white.cgColor
             $0.layer.shadowRadius = 1.0
@@ -85,15 +87,16 @@ final class AlbumCell: UITableViewCell {
             $0.layer.shadowOpacity = 1.0
             $0.clipsToBounds = true
         }
-
-        NSLayoutConstraint.activate([
-            thirdImageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
-            thirdImageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
-            secondImageView.centerXAnchor.constraint(equalTo: imageContainerView.centerXAnchor),
-            secondImageView.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor),
-            firstImageView.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
-            firstImageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
-        ])
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                thirdImageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+                thirdImageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
+                secondImageView.centerXAnchor.constraint(equalTo: imageContainerView.centerXAnchor),
+                secondImageView.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor),
+                firstImageView.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
+                firstImageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+            ])
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
